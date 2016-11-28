@@ -11,13 +11,29 @@ int wh_avrg;
 int tresshold;
 
 int getAvrg() {}
-
+void sumTresshold()
+{
+  tresshold = ((wh_tr - bl_tr)/2)+wh_tr; 
+}
 void setup() {
+  pinMode(motor1, OUTPUT);
+  pinMode(motor2, OUTPUT);
+
   while (true) {
     if (button == HIGH) {
       bl_avrg = getAvrg();
     }
   }
+
+  digitalWrite(motor1, HIGH);
+  digitalWrite(motor2, HIGH);
+  delay(1000);
+  digitalWrite(motor1, LOW);
+  digitalWrite(motor2, LOW);
+
+  wh_tr = getAvrg();
+  sumTresshold();
+
 }
 
 void loop() {
